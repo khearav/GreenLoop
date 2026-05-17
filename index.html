@@ -4,224 +4,309 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>GreenLoop</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 :root{
-  --g0:#f5f7f2;--g1:#eef1e9;--g2:#dce5d0;--g3:#b5cfa0;
-  --g4:#7daa56;--g5:#4a7d28;--g6:#2e5516;--g7:#1a3410;
-  --w1:#e4edf7;--w4:#4a8fd4;--w6:#1a5fa8;
-  --amber:#c8760a;--amberlight:#fdf3e0;
-  --text:#0f1a08;--text2:#4a6038;--text3:#8aa070;
-  --surface:#ffffff;--border:rgba(90,140,50,0.12);--bordmed:rgba(90,140,50,0.22);
-  --radius:18px;--radiussm:12px;--radiusxl:26px;
+  --sage:#4a7c59;--sage2:#3a6347;--sage3:#2d4f38;
+  --sagelight:#c8ddc0;--sagebg:#e8f0e4;--sagemid:#a0c090;
+  --surface:#ffffff;--surface2:#f4f8f2;--surface3:#eaf2e6;
+  --text:#1a2e1e;--text2:#4a6a50;--text3:#8aaa90;
+  --amber:#e8962a;--amberlight:#fdf0dc;
+  --blue:#3a8fc0;--bluelight:#daeef8;
+  --border:rgba(74,124,89,0.12);--border2:rgba(74,124,89,0.2);
+  --r:20px;--rsm:14px;--rxl:30px;
 }
-body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Neue',sans-serif;background:var(--g0);color:var(--text);padding-bottom:48px;min-height:100vh;}
-.status-bar{display:flex;justify-content:space-between;align-items:center;padding:12px 20px 4px;font-size:13px;font-weight:600;color:var(--text2);}
-.status-time{font-size:15px;font-weight:700;color:var(--text);}
-.hero{margin:8px 16px 0;background:var(--g7);border-radius:var(--radiusxl);padding:24px 22px 20px;position:relative;overflow:hidden;}
-.hero-leaves{position:absolute;inset:0;pointer-events:none;opacity:0.35;}
-.hero-chip{display:inline-flex;align-items:center;gap:5px;background:rgba(125,200,80,0.18);border:0.5px solid rgba(125,200,80,0.3);border-radius:99px;padding:4px 11px;font-size:10px;font-weight:600;letter-spacing:1.2px;color:#9dd87a;margin-bottom:14px;}
-.hero-pulse{width:5px;height:5px;border-radius:50%;background:#7eea4e;animation:pulse 2s ease infinite;}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.3;transform:scale(.7);}}
-.hero-main{display:flex;align-items:flex-end;gap:0;position:relative;z-index:1;}
-.hero-num-block{flex:1;}
-.hero-label{font-size:10px;font-weight:600;letter-spacing:2px;color:#7daa56;margin-bottom:2px;}
-.hero-big{font-size:72px;font-weight:200;color:#e8f5e1;line-height:1;letter-spacing:-4px;}
-.hero-unit{font-size:18px;font-weight:500;color:#7daa56;letter-spacing:0;vertical-align:super;}
-.hero-status{font-size:12px;font-weight:500;color:#9dc47a;margin-top:6px;min-height:16px;}
-.hero-pills{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px;position:relative;z-index:1;}
-.hero-pill{background:rgba(255,255,255,0.06);border:0.5px solid rgba(125,200,80,0.18);border-radius:var(--radius);padding:10px 8px;text-align:center;}
-.hp-label{font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#7daa56;margin-bottom:3px;}
-.hp-val{font-size:18px;font-weight:500;color:#e8f5e1;letter-spacing:-0.5px;}
-.hp-sub{font-size:9px;color:#5a8840;margin-top:1px;}
-.demo-banner{margin:10px 16px 0;background:var(--amberlight);border:0.5px solid rgba(200,118,10,0.25);border-radius:var(--radiussm);padding:9px 14px;font-size:11px;font-weight:600;color:var(--amber);text-align:center;display:none;}
-.refresh-row{display:flex;justify-content:flex-end;align-items:center;gap:10px;margin:12px 16px 0;}
-.refresh-btn{background:var(--surface);border:0.5px solid var(--bordmed);border-radius:99px;padding:7px 18px;font-family:-apple-system,sans-serif;font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;}
+html,body{background:var(--sagebg);}
+body{font-family:'Nunito',sans-serif;color:var(--text);padding-bottom:60px;min-height:100vh;max-width:430px;margin:0 auto;}
+
+/* ── TOP NAV ── */
+.topnav{display:flex;justify-content:space-between;align-items:center;padding:20px 22px 10px;}
+.topnav-title{font-size:22px;font-weight:900;color:var(--text);letter-spacing:-0.5px;}
+.topnav-sub{font-size:11px;font-weight:600;color:var(--text3);margin-top:1px;}
+.live-pill{display:flex;align-items:center;gap:5px;background:var(--surface);border:0.5px solid var(--border2);border-radius:99px;padding:6px 12px;}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--sage);animation:pulse 2s ease infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.2;}}
+.live-txt{font-size:10px;font-weight:700;color:var(--sage);letter-spacing:1px;text-transform:uppercase;}
+
+/* ── HERO CARD ── */
+.hero{margin:4px 16px 0;background:var(--sage);border-radius:var(--rxl);padding:22px 22px 0;position:relative;overflow:hidden;min-height:280px;}
+.hero-bg-leaf{position:absolute;right:-20px;top:-20px;opacity:0.1;pointer-events:none;}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
+.hero-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.6);}
+.hero-season{background:rgba(255,255,255,0.15);border:0.5px solid rgba(255,255,255,0.2);border-radius:99px;padding:4px 12px;font-size:10px;font-weight:700;color:rgba(255,255,255,0.9);}
+.hero-num-row{display:flex;align-items:flex-end;gap:4px;margin-bottom:4px;}
+.hero-big{font-size:88px;font-weight:900;line-height:1;letter-spacing:-4px;color:#fff;}
+.hero-unit{font-size:24px;font-weight:700;color:rgba(255,255,255,0.7);margin-bottom:12px;}
+.hero-status{font-size:12px;font-weight:600;color:rgba(255,255,255,0.65);margin-bottom:20px;}
+.hero-plant{position:absolute;right:16px;bottom:0;display:flex;align-items:flex-end;}
+
+/* floating chips on hero */
+.hero-chips{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+.hchip{background:rgba(255,255,255,0.18);border:0.5px solid rgba(255,255,255,0.25);border-radius:99px;padding:5px 12px;font-size:11px;font-weight:700;color:#fff;display:flex;align-items:center;gap:5px;}
+.hchip-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.7);}
+.hchip-dot.warn{background:#f0d060;}
+.hchip-dot.ok{background:#a0f080;}
+.hchip-dot.err{background:#f08080;}
+
+/* ── STATS ROW ── */
+.stats-row{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 16px 0;}
+.stat-card{background:var(--surface);border:0.5px solid var(--border);border-radius:var(--r);padding:16px;}
+.stat-ico{width:36px;height:36px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
+.stat-ico.green{background:var(--surface3);}
+.stat-ico.blue{background:var(--bluelight);}
+.stat-ico.amber{background:var(--amberlight);}
+.stat-lbl{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text3);margin-bottom:3px;}
+.stat-val{font-size:26px;font-weight:900;color:var(--text);letter-spacing:-1px;line-height:1;}
+.stat-sub{font-size:10px;font-weight:600;color:var(--text3);margin-top:3px;}
+
+/* ── TANK CARD ── */
+.tank-card{margin:10px 16px 0;background:var(--surface);border:0.5px solid var(--border);border-radius:var(--r);padding:18px;}
+.tank-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
+.tank-title{font-size:14px;font-weight:800;color:var(--text);}
+.tank-pct-badge{font-size:20px;font-weight:900;color:var(--blue);}
+.tank-body{display:flex;align-items:center;gap:20px;}
+.tank-visual{flex-shrink:0;position:relative;}
+.tank-info{flex:1;}
+.tank-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:0.5px solid var(--border);}
+.tank-row:last-child{border-bottom:none;}
+.tank-row-k{font-size:11px;font-weight:600;color:var(--text3);}
+.tank-row-v{font-size:13px;font-weight:800;color:var(--text);}
+.tank-alert{display:none;margin-top:10px;background:#fff5f5;border:0.5px solid rgba(220,60,60,0.2);border-radius:var(--rsm);padding:8px 12px;font-size:11px;font-weight:700;color:#c03030;}
+
+/* ── SECTION ── */
+.section{margin:16px 16px 0;}
+.sec-hd{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.sec-lbl{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text3);}
+.sec-hd::after{content:'';flex:1;height:0.5px;background:var(--border2);}
+
+/* ── CARD ── */
+.card{background:var(--surface);border:0.5px solid var(--border);border-radius:var(--r);padding:16px 18px;}
+.card+.card{margin-top:8px;}
+
+/* ── CONTROL CARD ── */
+.ctrl-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.ctrl-title{font-size:14px;font-weight:800;color:var(--text);}
+.mode-badge{padding:5px 14px;border-radius:99px;font-size:10px;font-weight:800;letter-spacing:1px;background:var(--surface3);color:var(--sage2);border:0.5px solid var(--border2);}
+.moist-track{background:var(--sagebg);border-radius:99px;height:10px;position:relative;overflow:hidden;margin:12px 0 5px;}
+.moist-fill{height:100%;border-radius:99px;background:var(--sage);transition:width .8s ease;}
+.moist-band{position:absolute;top:0;height:100%;background:rgba(74,124,89,0.2);border-left:2px dashed var(--sage2);border-right:2px dashed var(--sage2);}
+.moist-lbls{display:flex;justify-content:space-between;font-size:9px;font-weight:700;color:var(--text3);margin-bottom:14px;}
+.data-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:0.5px solid var(--border);}
+.data-row:last-child{border-bottom:none;}
+.dr-k{font-size:11px;font-weight:600;color:var(--text3);}
+.dr-v{font-size:13px;font-weight:800;color:var(--text);}
+.pid-box{display:flex;align-items:center;gap:10px;background:var(--surface3);border:0.5px solid var(--border2);border-radius:var(--rsm);padding:10px 12px;margin-top:12px;}
+.pid-ico{width:30px;height:30px;background:var(--sagebg);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.pid-txt{font-size:10px;font-weight:600;color:var(--text3);line-height:1.5;}
+.pid-txt b{display:block;font-size:11px;font-weight:800;color:var(--text2);margin-bottom:1px;}
+
+/* ── PUMP ── */
+.pump-row{display:flex;align-items:center;gap:14px;}
+.pump-ico{width:44px;height:44px;border-radius:14px;background:var(--surface3);border:0.5px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.pump-ico.on{background:#e0f4e8;border-color:rgba(74,124,89,0.3);}
+.pump-info{flex:1;}
+.pump-name{font-size:13px;font-weight:800;color:var(--text);}
+.pump-sub{font-size:10px;font-weight:600;color:var(--text3);margin-top:2px;}
+.pump-badge{padding:6px 16px;border-radius:99px;font-size:11px;font-weight:800;background:var(--surface3);color:var(--text3);border:0.5px solid var(--border2);}
+.pump-badge.on{background:#e0f4e8;color:var(--sage2);border-color:rgba(74,124,89,0.3);}
+
+/* ── PROFILES ── */
+.profiles-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
+.prof{background:var(--surface);border:0.5px solid var(--border);border-radius:var(--r);padding:14px 12px;cursor:pointer;transition:all .15s;}
+.prof.active{border-color:var(--sage);background:var(--surface3);}
+.prof-ico{font-size:24px;margin-bottom:5px;}
+.prof-name{font-size:10px;font-weight:700;letter-spacing:0.5px;color:var(--text3);}
+.prof.active .prof-name{color:var(--sage2);}
+.prof-rh{font-size:16px;font-weight:900;color:var(--text);margin-top:2px;}
+.prof.active .prof-rh{color:var(--sage);}
+
+/* ── WEATHER ── */
+.wx-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;}
+.wx-loc{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:4px;}
+.wx-temp{font-size:34px;font-weight:900;color:var(--text);letter-spacing:-1.5px;}
+.wx-cond{font-size:12px;font-weight:600;color:var(--text2);margin-top:2px;}
+.wx-right{text-align:right;}
+.wx-icon{font-size:30px;margin-bottom:4px;}
+.wx-season-pill{background:var(--amberlight);border:0.5px solid rgba(232,150,42,0.25);border-radius:99px;padding:4px 10px;font-size:10px;font-weight:700;color:var(--amber);white-space:nowrap;}
+.wx-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-bottom:10px;}
+.wx-stat{background:var(--surface3);border-radius:var(--rsm);padding:8px 10px;}
+.wx-stat-lbl{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text3);margin-bottom:2px;}
+.wx-stat-val{font-size:14px;font-weight:800;color:var(--text);}
+.wx-note{font-size:11px;font-weight:600;color:var(--text3);line-height:1.6;padding-top:10px;border-top:0.5px solid var(--border);}
+
+/* ── CHART ── */
+.chart-tabs{display:flex;gap:6px;margin-bottom:12px;}
+.ctab{background:var(--surface3);border:0.5px solid var(--border2);border-radius:var(--rsm);padding:6px 14px;font-family:'Nunito',sans-serif;font-size:11px;font-weight:700;color:var(--text3);cursor:pointer;}
+.ctab.active{background:var(--sage);border-color:var(--sage);color:#fff;}
+canvas{width:100%!important;height:145px!important;}
+
+/* ── LOG ── */
+.log-wrap{border-radius:var(--r);overflow:hidden;border:0.5px solid var(--border);}
+.log-head{display:grid;grid-template-columns:1fr 60px 54px 42px;padding:8px 14px;background:var(--surface3);font-size:8px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text3);}
+.log-row{display:grid;grid-template-columns:1fr 60px 54px 42px;align-items:center;padding:9px 14px;border-top:0.5px solid var(--border);background:var(--surface);}
+.lt{font-size:11px;font-weight:600;color:var(--text3);}
+.lv{font-size:13px;font-weight:800;color:var(--text);text-align:right;}
+.ltemp{font-size:11px;font-weight:600;color:var(--text2);text-align:right;}
+.lpump{font-size:10px;font-weight:800;text-align:right;color:var(--text3);}
+.lpump.on{color:var(--sage);}
+
+/* ── REFRESH / DEMO ── */
+.refresh-row{display:flex;justify-content:flex-end;align-items:center;gap:10px;margin:10px 16px 0;}
+.refresh-btn{background:var(--surface);border:0.5px solid var(--border2);border-radius:99px;padding:7px 18px;font-family:'Nunito',sans-serif;font-size:11px;font-weight:700;color:var(--text2);cursor:pointer;}
 .refresh-btn.spin .ri{display:inline-block;animation:spin .7s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
-.last-update{font-size:10px;color:var(--text3);font-weight:500;}
-.section{margin:20px 16px 0;}
-.section-label{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:10px;}
-.card{background:var(--surface);border:0.5px solid var(--border);border-radius:var(--radius);padding:16px 18px;}
-.card+.card{margin-top:10px;}
-.wx-label{font-size:9px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;color:var(--text3);margin-bottom:4px;}
-.wx-top{display:flex;align-items:center;justify-content:space-between;}
-.wx-temp{font-size:28px;font-weight:300;color:var(--text);letter-spacing:-1px;}
-.wx-desc{font-size:12px;font-weight:500;color:var(--text2);margin-top:2px;}
-.wx-season-badge{background:var(--amberlight);border:0.5px solid rgba(200,118,10,0.2);border-radius:99px;padding:4px 12px;font-size:11px;font-weight:600;color:var(--amber);}
-.wx-icon{font-size:32px;margin-top:4px;text-align:right;}
-.wx-details{display:flex;gap:16px;margin-top:10px;padding-top:10px;border-top:0.5px solid var(--border);}
-.wx-detail{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text2);font-weight:500;}
-.wx-note{margin-top:10px;padding-top:10px;border-top:0.5px solid var(--border);font-size:11px;color:var(--text2);line-height:1.6;}
-.ctrl-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
-.ctrl-title{font-size:14px;font-weight:600;color:var(--text);}
-.ctrl-badge{padding:4px 12px;border-radius:99px;font-size:11px;font-weight:600;background:var(--g1);color:var(--text2);}
-.moist-track{background:var(--g1);border-radius:99px;height:10px;position:relative;overflow:hidden;margin:14px 0 6px;}
-.moist-fill{height:100%;border-radius:99px;background:var(--g4);transition:width .8s ease;}
-.moist-band{position:absolute;top:0;height:100%;background:rgba(74,125,40,0.18);border-left:1.5px dashed var(--g5);border-right:1.5px dashed var(--g5);}
-.moist-labels{display:flex;justify-content:space-between;font-size:10px;color:var(--text3);font-weight:500;}
-.data-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:0.5px solid var(--border);}
-.data-row:last-child{border-bottom:none;}
-.dr-key{font-size:12px;color:var(--text2);}
-.dr-val{font-size:13px;font-weight:600;color:var(--text);}
-.pid-coming{display:flex;align-items:center;gap:10px;background:var(--g1);border:0.5px solid var(--bordmed);border-radius:var(--radiussm);padding:10px 14px;margin-top:12px;}
-.pid-icon{width:32px;height:32px;background:var(--g2);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.pid-text{font-size:11px;color:var(--text2);line-height:1.5;}
-.pid-text strong{display:block;font-size:12px;font-weight:600;color:var(--text);margin-bottom:1px;}
-.pump-row{display:flex;align-items:center;gap:14px;}
-.pump-ico{width:44px;height:44px;border-radius:14px;background:var(--g1);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.pump-ico.active{background:#dcf3cc;}
-.pump-info{flex:1;}
-.pump-name{font-size:14px;font-weight:600;color:var(--text);}
-.pump-sub{font-size:11px;color:var(--text3);margin-top:2px;}
-.pump-state{padding:6px 16px;border-radius:99px;font-size:12px;font-weight:600;background:var(--g1);color:var(--text2);}
-.pump-state.on{background:#dcf3cc;color:var(--g6);}
-.profiles-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
-.profile-card{background:var(--surface);border:0.5px solid var(--border);border-radius:var(--radius);padding:14px 12px;cursor:pointer;transition:border-color .15s,background .15s;}
-.profile-card.active{border-color:var(--g5);background:var(--g1);}
-.profile-ico{font-size:24px;margin-bottom:6px;}
-.profile-name{font-size:11px;font-weight:600;color:var(--text2);}
-.profile-card.active .profile-name{color:var(--g6);}
-.profile-rh{font-size:16px;font-weight:600;color:var(--text);margin-top:2px;}
-.profile-card.active .profile-rh{color:var(--g6);}
-.chart-tabs{display:flex;gap:6px;margin-bottom:14px;}
-.ctab{background:var(--g1);border:0.5px solid var(--bordmed);border-radius:var(--radiussm);padding:5px 14px;font-family:-apple-system,sans-serif;font-size:11px;font-weight:600;color:var(--text2);cursor:pointer;transition:all .2s;}
-.ctab.active{background:var(--g6);border-color:var(--g6);color:#c0dd97;}
-canvas{width:100%!important;height:150px!important;}
-.log-header{display:grid;grid-template-columns:1fr 62px 54px 42px;padding:7px 14px;background:var(--g1);border-radius:var(--radiussm) var(--radiussm) 0 0;font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);}
-.log-row{display:grid;grid-template-columns:1fr 62px 54px 42px;align-items:center;padding:9px 14px;border-top:0.5px solid var(--border);background:var(--surface);}
-.log-row:last-child{border-radius:0 0 var(--radiussm) var(--radiussm);}
-.lt{font-size:11px;color:var(--text2);}
-.lv{font-size:13px;font-weight:600;color:var(--text);text-align:right;}
-.ltemp{font-size:11px;font-weight:500;color:var(--text2);text-align:right;}
-.lpump{font-size:10px;font-weight:700;text-align:right;}
-.lpump.on{color:var(--g5);}
-.lpump.off{color:var(--text3);}
-.gl-footer{margin:24px 16px 0;padding-top:12px;border-top:0.5px solid var(--border);display:flex;justify-content:space-between;font-size:9px;font-weight:600;letter-spacing:1px;color:var(--text3);text-transform:uppercase;}
+.last-upd{font-size:10px;font-weight:600;color:var(--text3);}
+.demo-bar{margin:10px 16px 0;background:var(--amberlight);border:0.5px solid rgba(232,150,42,0.25);border-radius:var(--rsm);padding:8px 14px;font-size:11px;font-weight:700;color:var(--amber);text-align:center;display:none;}
+.footer{margin:28px 16px 0;padding-top:12px;border-top:0.5px solid var(--border);display:flex;justify-content:space-between;font-size:9px;font-weight:700;letter-spacing:1px;color:var(--text3);text-transform:uppercase;}
 </style>
 </head>
 <body>
 
-<div class="status-bar">
-  <span class="status-time" id="statusTime">--:--</span>
-  <span style="font-size:11px;">Canal 3386144</span>
-</div>
-
-<div class="hero">
-  <svg class="hero-leaves" viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMaxYMid slice">
-    <ellipse cx="370" cy="20" rx="70" ry="34" fill="none" stroke="#7daa56" stroke-width="1.2"/>
-    <ellipse cx="345" cy="58" rx="90" ry="44" fill="none" stroke="#7daa56" stroke-width="0.8"/>
-    <path d="M310,0 Q360,90 410,45" fill="none" stroke="#7daa56" stroke-width="1.2"/>
-    <path d="M330,0 Q395,65 410,110" fill="none" stroke="#7daa56" stroke-width="0.8"/>
-    <circle cx="15" cy="210" r="70" fill="none" stroke="#7daa56" stroke-width="0.8"/>
-  </svg>
-  <div style="position:relative;z-index:1;">
-    <div class="hero-chip">
-      <div class="hero-pulse"></div>
-      <span>GreenLoop · en vivo</span>
-    </div>
-    <div class="hero-main">
-      <div class="hero-num-block">
-        <div class="hero-label">HUMEDAD DEL SUELO</div>
-        <div class="hero-big" id="bigHum">--<span class="hero-unit">%</span></div>
-        <div class="hero-status" id="statusText">Conectando sensores…</div>
-      </div>
-      <div style="flex-shrink:0;margin-bottom:-4px;">
-        <svg width="80" height="94" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg">
-          <rect x="30" y="72" width="30" height="22" rx="5" fill="#3d2a1e"/>
-          <rect x="27" y="68" width="36" height="8" rx="3" fill="#5a3e2c"/>
-          <ellipse cx="45" cy="55" rx="22" ry="26" fill="#2e7d32" id="plantBody"/>
-          <ellipse cx="31" cy="66" rx="14" ry="10" fill="#388e3c" transform="rotate(-18,31,66)"/>
-          <ellipse cx="59" cy="66" rx="14" ry="10" fill="#388e3c" transform="rotate(18,59,66)"/>
-          <ellipse cx="45" cy="42" rx="11" ry="7" fill="#43a047"/>
-          <line x1="45" y1="72" x2="45" y2="48" stroke="#1b5e20" stroke-width="1.5"/>
-          <line x1="45" y1="60" x2="33" y2="54" stroke="#1b5e20" stroke-width="1"/>
-          <line x1="45" y1="58" x2="57" y2="53" stroke="#1b5e20" stroke-width="1"/>
-        </svg>
-      </div>
-    </div>
-    <div class="hero-pills">
-      <div class="hero-pill">
-        <div class="hp-label">Temp</div>
-        <div class="hp-val" id="miniTemp">--°</div>
-        <div class="hp-sub">ambiente</div>
-      </div>
-      <div class="hero-pill">
-        <div class="hp-label">Setpoint</div>
-        <div class="hp-val" id="miniSP">--%</div>
-        <div class="hp-sub">RHset(T)</div>
-      </div>
-      <div class="hero-pill">
-        <div class="hp-label">H. Aire</div>
-        <div class="hp-val" id="miniAir">--%</div>
-        <div class="hp-sub">DHT11</div>
-      </div>
-    </div>
+<!-- TOP NAV -->
+<div class="topnav">
+  <div>
+    <div class="topnav-title">GreenLoop</div>
+    <div class="topnav-sub">Maceta inteligente · CETYS Tijuana</div>
+  </div>
+  <div class="live-pill">
+    <div class="live-dot"></div>
+    <div class="live-txt" id="statusTime">--:--</div>
   </div>
 </div>
 
-<div class="demo-banner" id="demoBanner">Modo demo — conecta el ESP32 para datos reales</div>
+<!-- HERO -->
+<div class="hero">
+  <svg class="hero-bg-leaf" width="180" height="180" viewBox="0 0 200 200">
+    <ellipse cx="160" cy="40" rx="80" ry="40" fill="white" transform="rotate(-20,160,40)"/>
+    <ellipse cx="180" cy="100" rx="60" ry="30" fill="white" transform="rotate(10,180,100)"/>
+    <ellipse cx="140" cy="150" rx="70" ry="35" fill="white" transform="rotate(-30,140,150)"/>
+  </svg>
 
+  <div class="hero-top">
+    <div class="hero-label">Humedad del suelo</div>
+    <div class="hero-season" id="heroSeason">-- Temporada</div>
+  </div>
+
+  <div class="hero-num-row">
+    <div class="hero-big" id="bigHum">--</div>
+    <div class="hero-unit">%</div>
+  </div>
+  <div class="hero-status" id="statusText">Conectando sensores…</div>
+
+  <div class="hero-chips">
+    <div class="hchip"><div class="hchip-dot ok" id="chipDot"></div><span id="chipLabel">Operando</span></div>
+    <div class="hchip"><span id="chipTemp">--°C</span></div>
+    <div class="hchip"><span id="chipSP">SP: --%</span></div>
+  </div>
+
+  <div class="hero-plant">
+    <svg width="130" height="140" viewBox="0 0 130 140" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="65" cy="128" rx="40" ry="8" fill="rgba(0,0,0,0.15)"/>
+      <rect x="42" y="100" width="46" height="30" rx="8" fill="#2a5030"/>
+      <rect x="38" y="94" width="54" height="12" rx="5" fill="#3a6040"/>
+      <ellipse cx="65" cy="72" rx="32" ry="38" fill="#2d6635" id="plantBody"/>
+      <ellipse cx="44" cy="88" rx="20" ry="14" fill="#357540" transform="rotate(-20,44,88)"/>
+      <ellipse cx="86" cy="88" rx="20" ry="14" fill="#357540" transform="rotate(20,86,88)"/>
+      <ellipse cx="65" cy="52" rx="16" ry="11" fill="#3d8845"/>
+      <ellipse cx="48" cy="62" rx="12" ry="8" fill="#3d8845" transform="rotate(-15,48,62)"/>
+      <ellipse cx="82" cy="62" rx="12" ry="8" fill="#3d8845" transform="rotate(15,82,62)"/>
+      <line x1="65" y1="100" x2="65" y2="62" stroke="#1d4520" stroke-width="2"/>
+      <line x1="65" y1="80" x2="46" y2="70" stroke="#1d4520" stroke-width="1.5"/>
+      <line x1="65" y1="76" x2="84" y2="66" stroke="#1d4520" stroke-width="1.5"/>
+    </svg>
+  </div>
+</div>
+
+<!-- STATS ROW: temp + humedad aire -->
+<div class="stats-row">
+  <div class="stat-card">
+    <div class="stat-ico amber">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e8962a" stroke-width="2" stroke-linecap="round"><path d="M12 2a6 6 0 0 1 1 11.93V20a1 1 0 0 1-2 0v-6.07A6 6 0 0 1 12 2z"/></svg>
+    </div>
+    <div class="stat-lbl">Temperatura</div>
+    <div class="stat-val" id="statTemp">--°</div>
+    <div class="stat-sub">ambiente</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-ico blue">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3a8fc0" stroke-width="2" stroke-linecap="round"><path d="M12 2C6 13 4 16 4 18a8 8 0 0 0 16 0c0-2-2-5-8-16z"/></svg>
+    </div>
+    <div class="stat-lbl">Humedad Aire</div>
+    <div class="stat-val" id="statAir">--%</div>
+    <div class="stat-sub">DHT11</div>
+  </div>
+</div>
+
+<!-- TANQUE VISUAL -->
+<div class="tank-card">
+  <div class="tank-head">
+    <div class="tank-title">Tanque de agua</div>
+    <div class="tank-pct-badge" id="tankPctBadge">--%</div>
+  </div>
+  <div class="tank-body">
+    <div class="tank-visual">
+      <svg width="80" height="130" viewBox="0 0 80 130" id="tankSvg">
+        <defs>
+          <clipPath id="tankClip">
+            <rect x="8" y="18" width="64" height="96" rx="8"/>
+          </clipPath>
+        </defs>
+        <rect x="8" y="18" width="64" height="96" rx="10" fill="#e8f4fc" stroke="#90c8e8" stroke-width="1.5"/>
+        <rect id="tankWater" x="8" y="80" width="64" height="34" rx="0" fill="#3a8fc0" opacity="0.6" clip-path="url(#tankClip)"/>
+        <rect x="8" y="18" width="64" height="96" rx="10" fill="none" stroke="#3a8fc0" stroke-width="1.5"/>
+        <rect x="28" y="8" width="24" height="14" rx="4" fill="#90c8e8"/>
+        <line x1="28" y1="14" x2="28" y2="20" stroke="#60a8d0" stroke-width="1"/>
+        <line x1="52" y1="14" x2="52" y2="20" stroke="#60a8d0" stroke-width="1"/>
+        <line x1="20" y1="42" x2="60" y2="42" stroke="rgba(58,143,192,0.2)" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="20" y1="64" x2="60" y2="64" stroke="rgba(58,143,192,0.2)" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="20" y1="86" x2="60" y2="86" stroke="rgba(58,143,192,0.2)" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="64" y="44" font-size="7" fill="rgba(58,143,192,0.5)" text-anchor="end" font-family="Nunito">75%</text>
+        <text x="64" y="66" font-size="7" fill="rgba(58,143,192,0.5)" text-anchor="end" font-family="Nunito">50%</text>
+        <text x="64" y="88" font-size="7" fill="rgba(58,143,192,0.5)" text-anchor="end" font-family="Nunito">25%</text>
+        <rect x="30" y="112" width="20" height="8" rx="3" fill="#90c8e8"/>
+      </svg>
+    </div>
+    <div class="tank-info">
+      <div class="tank-row"><span class="tank-row-k">Nivel estimado</span><span class="tank-row-v" id="tankVol">-- L</span></div>
+      <div class="tank-row"><span class="tank-row-k">Capacidad total</span><span class="tank-row-v">5 L</span></div>
+      <div class="tank-row"><span class="tank-row-k">Autonomía</span><span class="tank-row-v" id="tankAuton">-- h</span></div>
+      <div class="tank-row"><span class="tank-row-k">Consumo est.</span><span class="tank-row-v" id="tankQ">-- mL/h</span></div>
+    </div>
+  </div>
+  <div class="tank-alert" id="tankAlert">Nivel bajo — recarga el tanque pronto</div>
+</div>
+
+<div class="demo-bar" id="demoBanner">Modo demo — sin conexión al ESP32</div>
 <div class="refresh-row">
-  <span class="last-update" id="lastUpdate"></span>
+  <span class="last-upd" id="lastUpdate"></span>
   <button class="refresh-btn" id="refreshBtn" onclick="manualRefresh()"><span class="ri">↻</span> Actualizar</button>
 </div>
 
-<!-- CLIMA -->
+<!-- SISTEMA DE CONTROL -->
 <div class="section">
-  <div class="section-label">Clima exterior</div>
+  <div class="sec-hd"><span class="sec-lbl">Sistema de control</span></div>
   <div class="card">
-    <div class="wx-label">Tijuana, B.C.</div>
-    <div class="wx-top">
-      <div>
-        <div class="wx-temp" id="wxTemp">--°C</div>
-        <div class="wx-desc" id="wxDesc">--</div>
-      </div>
-      <div style="text-align:right;">
-        <div class="wx-season-badge" id="wxSeasonBadge">--</div>
-        <div class="wx-icon" id="wxIcon">🌤</div>
-      </div>
-    </div>
-    <div class="wx-details">
-      <div class="wx-detail">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a6 6 0 0 1 6 6c0 4-6 12-6 12S6 12 6 8a6 6 0 0 1 6-6z"/></svg>
-        <span id="wxHum">--% humedad</span>
-      </div>
-      <div class="wx-detail">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.7 7.7A2.5 2.5 0 0 0 15.5 3H5a2.5 2.5 0 0 0 0 5h12a2.5 2.5 0 0 1 0 5H3"/></svg>
-        <span id="wxWind">-- km/h</span>
-      </div>
-    </div>
-    <div class="wx-note" id="wxNote">Calculando impacto climático en el setpoint…</div>
-  </div>
-</div>
-
-<!-- CONTROL -->
-<div class="section">
-  <div class="section-label">Control de humedad</div>
-  <div class="card">
-    <div class="ctrl-header">
+    <div class="ctrl-head">
       <span class="ctrl-title" id="profileNameCtrl">Plantas de interior</span>
-      <span class="ctrl-badge">On/Off</span>
+      <span class="mode-badge">On / Off</span>
     </div>
     <div class="moist-track">
       <div class="moist-fill" id="moistFill" style="width:0%"></div>
       <div class="moist-band" id="moistBand"></div>
     </div>
-    <div class="moist-labels"><span>0% Seco</span><span>Zona óptima</span><span>100% Sat.</span></div>
-    <div style="margin-top:12px;">
-      <div class="data-row"><span class="dr-key">Humedad suelo actual</span><span class="dr-val" id="spSoil">--%</span></div>
-      <div class="data-row"><span class="dr-key">Setpoint RHset(T)</span><span class="dr-val" id="spActive">--%</span></div>
-      <div class="data-row"><span class="dr-key">Histéresis ±Δ</span><span class="dr-val" id="spBand">-- / --%</span></div>
-      <div class="data-row"><span class="dr-key">Error e = RHset − RH</span><span class="dr-val" id="spError">--%</span></div>
-    </div>
-    <div class="pid-coming">
-      <div class="pid-icon">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--g5)" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+    <div class="moist-lbls"><span>0%</span><span>Zona óptima</span><span>100%</span></div>
+    <div class="data-row"><span class="dr-k">Humedad suelo actual</span><span class="dr-v" id="spSoil">--%</span></div>
+    <div class="data-row"><span class="dr-k">Setpoint RHset(T)</span><span class="dr-v" id="spActive">--%</span></div>
+    <div class="data-row"><span class="dr-k">Histéresis ±Δ</span><span class="dr-v" id="spBand">-- / --%</span></div>
+    <div class="data-row"><span class="dr-k">Error e(t)</span><span class="dr-v" id="spError">--%</span></div>
+    <div class="pid-box">
+      <div class="pid-ico">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
       </div>
-      <div class="pid-text">
-        <strong>Control PID — próximamente</strong>
-        Kp · e(t) + Ki · ∫e dt + Kd · de/dt para control continuo de la bomba.
+      <div class="pid-txt">
+        <b>Control PID — en desarrollo</b>
+        u(t) = Kp·e + Ki·∫e dt + Kd·de/dt
       </div>
     </div>
   </div>
@@ -229,38 +314,57 @@ canvas{width:100%!important;height:150px!important;}
 
 <!-- ACTUADOR -->
 <div class="section">
-  <div class="section-label">Actuador</div>
+  <div class="sec-hd"><span class="sec-lbl">Actuador</span></div>
   <div class="card">
     <div class="pump-row">
       <div class="pump-ico" id="pumpIcon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--g5)" stroke-width="1.8" stroke-linecap="round">
-          <path d="M12 2C6 2 3 7 3 12c0 3.9 2.5 7.2 6 8.5V22h6v-1.5c3.5-1.3 6-4.6 6-8.5 0-5-3-10-9-10z"/>
-          <path d="M12 6v6l3 3"/>
-        </svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="2" stroke-linecap="round"><path d="M12 2C6 2 3 7 3 12c0 3.9 2.5 7.2 6 8.5V22h6v-1.5c3.5-1.3 6-4.6 6-8.5 0-5-3-10-9-10z"/><path d="M12 6v6l3 3"/></svg>
       </div>
       <div class="pump-info">
         <div class="pump-name">Bomba de agua</div>
-        <div class="pump-sub" id="pumpSub">5V · relay activado por ESP32</div>
+        <div class="pump-sub" id="pumpSub">5V · relay ESP32 · GPIO</div>
       </div>
-      <div class="pump-state" id="pumpBadge">Apagada</div>
+      <div class="pump-badge" id="pumpBadge">Apagada</div>
     </div>
   </div>
 </div>
 
-<!-- PERFILES -->
+<!-- PERFIL -->
 <div class="section">
-  <div class="section-label">Perfil de planta</div>
+  <div class="sec-hd"><span class="sec-lbl">Perfil de planta</span></div>
   <div class="profiles-grid" id="profilesGrid"></div>
+</div>
+
+<!-- CLIMA -->
+<div class="section">
+  <div class="sec-hd"><span class="sec-lbl">Clima exterior</span></div>
+  <div class="card">
+    <div class="wx-top">
+      <div>
+        <div class="wx-loc">Tijuana, B.C.</div>
+        <div class="wx-temp" id="wxTemp">--°C</div>
+        <div class="wx-cond" id="wxDesc">--</div>
+      </div>
+      <div class="wx-right">
+        <div class="wx-icon" id="wxIcon">🌤</div>
+        <div class="wx-season-pill" id="wxSeasonBadge">--</div>
+      </div>
+    </div>
+    <div class="wx-stats">
+      <div class="wx-stat"><div class="wx-stat-lbl">Humedad aire</div><div class="wx-stat-val" id="wxHum">--%</div></div>
+      <div class="wx-stat"><div class="wx-stat-lbl">Condición</div><div class="wx-stat-val" id="wxCondDetail">--</div></div>
+    </div>
+    <div class="wx-note" id="wxNote">Calculando impacto climático…</div>
+  </div>
 </div>
 
 <!-- HISTORIAL -->
 <div class="section">
-  <div class="section-label">Historial 24 h</div>
+  <div class="sec-hd"><span class="sec-lbl">Historial 24 h</span></div>
   <div class="card">
     <div class="chart-tabs">
       <button class="ctab active" onclick="switchChart('hum',this)">Humedad suelo</button>
-      <button class="ctab" onclick="switchChart('temp',this)">Temperatura</button>
-      <button class="ctab" onclick="switchChart('air',this)">H. Aire</button>
+      <button class="ctab" onclick="switchChart('water',this)">Nivel agua</button>
     </div>
     <canvas id="mainChart"></canvas>
   </div>
@@ -268,22 +372,20 @@ canvas{width:100%!important;height:150px!important;}
 
 <!-- LOG -->
 <div class="section">
-  <div class="section-label">Lecturas recientes</div>
-  <div id="logList">
-    <div class="log-header">
-      <span>Hora</span><span style="text-align:right">Suelo</span><span style="text-align:right">Temp</span><span style="text-align:right">Bomba</span>
-    </div>
+  <div class="sec-hd"><span class="sec-lbl">Lecturas recientes</span></div>
+  <div class="log-wrap" id="logList">
+    <div class="log-head"><span>Hora</span><span style="text-align:right">Suelo</span><span style="text-align:right">Temp</span><span style="text-align:right">Bomba</span></div>
   </div>
 </div>
 
-<div class="gl-footer">
-  <span>ESP32 · DHT11 · Higrómetro</span>
-  <span>Refresca cada 60 s</span>
+<div class="footer">
+  <span>ESP32 · DHT11 · Canal 3386144</span>
+  <span>↻ cada 60 s</span>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script>
-const CHANNEL_ID='3386144',READ_KEY='U6W0UUNVMUDJ7PD2',TREF=20;
+const CHANNEL_ID='3386144',READ_KEY='U6W0UUNVMUDJ7PD2',TREF=20,TANK_CAP=5;
 const PROFILES=[
   {name:'Suculentas',ico:'🌵',RHbase:20,delta:5,k:0.3},
   {name:'Interior',ico:'🪴',RHbase:55,delta:8,k:0.7},
@@ -292,10 +394,10 @@ const PROFILES=[
   {name:'Hortalizas',ico:'🍅',RHbase:70,delta:8,k:1.4},
 ];
 const SEASONS={
-  spring:{name:'Primavera',emoji:'🌸',icon:'🌸',note:'Temporada de crecimiento activo. La mayor radiación solar eleva la evapotranspiración — el setpoint sube ligeramente para compensar.'},
-  summer:{name:'Verano',emoji:'☀️',icon:'☀️',note:'Calor elevado en Tijuana. Alta evapotranspiración — la bomba trabajará con mayor frecuencia. Revisa el nivel del tanque.'},
-  autumn:{name:'Otoño',emoji:'🍂',icon:'🍂',note:'Temperaturas moderadas. El setpoint baja con la temperatura ambiente. Buena época para reducir el riego gradualmente.'},
-  winter:{name:'Invierno',emoji:'❄️',icon:'🌫',note:'Periodo de latencia. Setpoint reducido para evitar sobrehumedad y hongos de raíz. Riegos más espaciados.'},
+  spring:{name:'Primavera',emoji:'🌸',icon:'🌸',cond:'Radiación moderada',note:'Crecimiento activo. Mayor evapotranspiración — el setpoint sube para compensar.'},
+  summer:{name:'Verano',emoji:'☀️',icon:'☀️',cond:'Alta radiación',note:'Calor elevado en Tijuana. Alta evapotranspiración — la bomba trabajará con mayor frecuencia. Revisa el tanque.'},
+  autumn:{name:'Otoño',emoji:'🍂',icon:'🍂',cond:'Templado',note:'El setpoint baja con la temperatura. Buena época para reducir el riego gradualmente.'},
+  winter:{name:'Invierno',emoji:'❄️',icon:'🌫',cond:'Latencia vegetal',note:'Periodo de latencia. Setpoint reducido para evitar sobrehumedad y hongos de raíz.'},
 };
 function getSeason(){const m=new Date().getMonth();if(m>=2&&m<=4)return'spring';if(m>=5&&m<=7)return'summer';if(m>=8&&m<=10)return'autumn';return'winter';}
 let allFeeds=[],activeProfile=1,chartMode='hum',chartInst=null;
@@ -303,89 +405,141 @@ function sp(p,T){return p.RHbase+p.k*(T-TREF);}
 function pumpOn(rh,s,d,f){if(f&&f.pumpEsp!==undefined)return f.pumpEsp===1;return rh<s-d;}
 function statusMsg(rh,s,d){
   if(rh<s-d*2)return'Suelo muy seco — regando activamente';
-  if(rh<s-d)return'Por debajo del setpoint — bomba encendida';
-  if(rh<=s+d)return'Humedad en rango óptimo ✓';
-  if(rh<=s+d*2)return'Ligeramente por encima — en espera';
+  if(rh<s-d)return'Por debajo del setpoint — bomba activa';
+  if(rh<=s+d)return'Humedad en rango óptimo';
+  if(rh<=s+d*2)return'Ligeramente alto — en espera';
   return'Suelo saturado — deja reposar';
 }
 function animatePlant(rh,s,d){
   const b=document.getElementById('plantBody');if(!b)return;
-  if(rh<s-d*2)b.setAttribute('fill','#5d4037');
-  else if(rh<s-d)b.setAttribute('fill','#827717');
-  else if(rh<=s+d)b.setAttribute('fill','#2e7d32');
-  else b.setAttribute('fill','#1b5e20');
+  if(rh<s-d*2)b.setAttribute('fill','#6a3a20');
+  else if(rh<s-d)b.setAttribute('fill','#5a5820');
+  else if(rh<=s+d)b.setAttribute('fill','#2d6635');
+  else b.setAttribute('fill','#1a4a28');
+}
+function animateTank(pct){
+  const el=document.getElementById('tankWater');if(!el)return;
+  const maxH=96,minY=18;
+  const h=Math.round(maxH*pct/100);
+  const y=minY+maxH-h;
+  el.setAttribute('y',y);el.setAttribute('height',h);
+  const badge=document.getElementById('tankPctBadge');
+  if(badge)badge.textContent=Math.round(pct)+'%';
+  document.getElementById('tankAlert').style.display=pct<20?'block':'none';
 }
 function fmtTime(ts){const d=new Date(ts);return d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0');}
 function updateClock(){const n=new Date();document.getElementById('statusTime').textContent=n.getHours().toString().padStart(2,'0')+':'+n.getMinutes().toString().padStart(2,'0');}
+
 function renderWeather(){
   const season=getSeason(),s=SEASONS[season];
+  document.getElementById('heroSeason').textContent=s.emoji+' '+s.name;
   document.getElementById('wxSeasonBadge').textContent=s.emoji+' '+s.name;
   document.getElementById('wxIcon').textContent=s.icon;
   document.getElementById('wxNote').textContent=s.note;
+  document.getElementById('wxCondDetail').textContent=s.cond;
   if(!allFeeds.length)return;
   const last=allFeeds[allFeeds.length-1];
   document.getElementById('wxTemp').textContent=last.temp.toFixed(1)+'°C';
   const air=last.humedadAire;
-  document.getElementById('wxHum').textContent=(air?air.toFixed(0):'--')+'% humedad';
+  document.getElementById('wxHum').textContent=(air?air.toFixed(0):'--')+'%';
   document.getElementById('wxDesc').textContent=last.temp>28?'Caluroso':last.temp>18?'Templado':'Fresco';
-  document.getElementById('wxWind').textContent='-- km/h';
 }
+
 function buildProfiles(){
   const g=document.getElementById('profilesGrid');g.innerHTML='';
   PROFILES.forEach((p,i)=>{
     const el=document.createElement('div');
-    el.className='profile-card'+(i===activeProfile?' active':'');
-    el.innerHTML=`<div class="profile-ico">${p.ico}</div><div class="profile-name">${p.name}</div><div class="profile-rh">${p.RHbase}% base</div>`;
+    el.className='prof'+(i===activeProfile?' active':'');
+    el.innerHTML=`<div class="prof-ico">${p.ico}</div><div class="prof-name">${p.name}</div><div class="prof-rh">${p.RHbase}% base</div>`;
     el.onclick=()=>{activeProfile=i;buildProfiles();renderAll();};
     g.appendChild(el);
   });
   document.getElementById('profileNameCtrl').textContent=PROFILES[activeProfile].name;
 }
+
 function renderHero(){
   if(!allFeeds.length)return;
   const last=allFeeds[allFeeds.length-1],p=PROFILES[activeProfile];
   const s=last.spEsp||sp(p,last.temp),pump=pumpOn(last.rh,s,p.delta,last),err=s-last.rh;
-  document.getElementById('bigHum').innerHTML=last.rh.toFixed(1)+'<span class="hero-unit">%</span>';
+
+  document.getElementById('bigHum').textContent=last.rh.toFixed(1);
   document.getElementById('statusText').textContent=statusMsg(last.rh,s,p.delta);
-  document.getElementById('miniTemp').textContent=last.temp.toFixed(1)+'°';
-  document.getElementById('miniSP').textContent=s.toFixed(1)+'%';
+  document.getElementById('chipTemp').textContent=last.temp.toFixed(1)+'°C';
+  document.getElementById('chipSP').textContent='SP: '+s.toFixed(1)+'%';
+  document.getElementById('statTemp').textContent=last.temp.toFixed(1)+'°';
   const air=last.humedadAire;
-  document.getElementById('miniAir').textContent=(air?air.toFixed(0):'--')+'%';
+  document.getElementById('statAir').textContent=(air?air.toFixed(0):'--')+'%';
+
+  const dot=document.getElementById('chipDot'),lbl=document.getElementById('chipLabel');
+  if(last.rh<s-p.delta*2){dot.className='hchip-dot err';lbl.textContent='Riego urgente';}
+  else if(last.rh<s-p.delta){dot.className='hchip-dot warn';lbl.textContent='Regando';}
+  else if(last.rh<=s+p.delta){dot.className='hchip-dot ok';lbl.textContent='Óptimo';}
+  else{dot.className='hchip-dot warn';lbl.textContent='Saturado';}
+
   const pb=document.getElementById('pumpBadge'),pi=document.getElementById('pumpIcon');
-  if(pump){pb.className='pump-state on';pb.textContent='Encendida';pi.className='pump-ico active';document.getElementById('pumpSub').textContent='Regando ahora — relay activo';}
-  else{pb.className='pump-state';pb.textContent='Apagada';pi.className='pump-ico';document.getElementById('pumpSub').textContent='5V · relay activado por ESP32';}
+  if(pump){pb.className='pump-badge on';pb.textContent='Encendida';pi.className='pump-ico on';document.getElementById('pumpSub').textContent='Regando — relay activo';}
+  else{pb.className='pump-badge';pb.textContent='Apagada';pi.className='pump-ico';document.getElementById('pumpSub').textContent='5V · relay ESP32 · GPIO';}
+
   animatePlant(last.rh,s,p.delta);
+
   document.getElementById('spSoil').textContent=last.rh.toFixed(1)+'%';
   document.getElementById('spActive').textContent=s.toFixed(1)+'%';
   document.getElementById('spBand').textContent=(s-p.delta).toFixed(1)+'% / '+(s+p.delta).toFixed(1)+'%';
   document.getElementById('spError').textContent=(err>=0?'+':'')+err.toFixed(1)+'%';
   document.getElementById('moistFill').style.width=last.rh+'%';
   const mb=document.getElementById('moistBand');mb.style.left=(s-p.delta)+'%';mb.style.width=(p.delta*2)+'%';
+
+  // Tank — use nivelAgua if available, else estimate
+  const nv=last.nivelAgua;
+  let tankPct=nv!=null&&!isNaN(nv)?Math.min(100,Math.max(0,nv)):(45+Math.random()*30);
+  animateTank(tankPct);
+  const vol=(TANK_CAP*tankPct/100).toFixed(2);
+  const qEst=Math.max(18,28+last.temp*.8+Math.abs(err)*.4);
+  const auton=Math.round(TANK_CAP*tankPct/100*1000/qEst);
+  document.getElementById('tankVol').textContent=vol+' L';
+  document.getElementById('tankAuton').textContent=auton+' h';
+  document.getElementById('tankQ').textContent=Math.round(qEst)+' mL/h';
 }
+
 function renderLog(){
   const list=document.getElementById('logList');
-  list.innerHTML='<div class="log-header"><span>Hora</span><span style="text-align:right">Suelo</span><span style="text-align:right">Temp</span><span style="text-align:right">Bomba</span></div>';
+  list.innerHTML='<div class="log-head"><span>Hora</span><span style="text-align:right">Suelo</span><span style="text-align:right">Temp</span><span style="text-align:right">Bomba</span></div>';
   const p=PROFILES[activeProfile];
   [...allFeeds].reverse().slice(0,18).forEach(f=>{
     const s=f.spEsp||sp(p,f.temp),pump=pumpOn(f.rh,s,p.delta,f);
     const row=document.createElement('div');row.className='log-row';
-    row.innerHTML=`<div class="lt">${fmtTime(f.ts)}</div><div class="lv">${f.rh.toFixed(1)}%</div><div class="ltemp">${f.temp.toFixed(1)}°C</div><div class="lpump ${pump?'on':'off'}">${pump?'ON':'OFF'}</div>`;
+    row.innerHTML=`<div class="lt">${fmtTime(f.ts)}</div><div class="lv">${f.rh.toFixed(1)}%</div><div class="ltemp">${f.temp.toFixed(1)}°C</div><div class="lpump ${pump?'on':''}">${pump?'ON':'—'}</div>`;
     list.appendChild(row);
   });
 }
+
 function switchChart(mode,btn){chartMode=mode;document.querySelectorAll('.ctab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');renderChart();}
+
 function renderChart(){
   const slice=[...allFeeds].slice(-24);
   const labels=slice.map(f=>new Date(f.ts).getHours().toString().padStart(2,'0')+':00');
   let data,color,label;
-  if(chartMode==='hum'){data=slice.map(f=>f.rh);color='#4a7d28';label='Humedad suelo (%)';}
-  else if(chartMode==='temp'){data=slice.map(f=>f.temp);color='#c8760a';label='Temperatura (°C)';}
-  else{data=slice.map(f=>f.humedadAire||null);color='#1a5fa8';label='Humedad aire (%)';}
+  if(chartMode==='hum'){data=slice.map(f=>f.rh);color='#4a7c59';label='Humedad suelo (%)';}
+  else{data=slice.map(f=>f.nivelAgua||null);color='#3a8fc0';label='Nivel de agua';}
   const ctx=document.getElementById('mainChart').getContext('2d');
   if(chartInst)chartInst.destroy();
-  chartInst=new Chart(ctx,{type:'line',data:{labels,datasets:[{label,data,borderColor:color,backgroundColor:color+'16',borderWidth:2,pointRadius:2.5,pointBackgroundColor:'#fff',pointBorderColor:color,pointBorderWidth:1.5,fill:true,tension:.4,spanGaps:true}]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{backgroundColor:'#fff',titleColor:'#222',bodyColor:color,borderColor:'rgba(0,0,0,0.08)',borderWidth:1,padding:10,cornerRadius:12,titleFont:{family:'-apple-system,sans-serif',weight:'600',size:11},bodyFont:{family:'-apple-system,sans-serif',weight:'600',size:13}}},scales:{x:{ticks:{color:'#8aa070',font:{size:9},maxTicksLimit:7},grid:{color:'rgba(0,0,0,0.04)'},border:{display:false}},y:{ticks:{color:'#8aa070',font:{size:9}},grid:{color:'rgba(0,0,0,0.04)'},border:{display:false}}}}});
+  chartInst=new Chart(ctx,{
+    type:'line',
+    data:{labels,datasets:[{label,data,borderColor:color,backgroundColor:color+'22',borderWidth:2,pointRadius:3,pointBackgroundColor:'#fff',pointBorderColor:color,pointBorderWidth:2,fill:true,tension:.4,spanGaps:true}]},
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      interaction:{mode:'index',intersect:false},
+      plugins:{legend:{display:false},tooltip:{backgroundColor:'#fff',titleColor:'#4a6a50',bodyColor:color,borderColor:'rgba(74,124,89,0.15)',borderWidth:1,padding:10,cornerRadius:12,titleFont:{family:'Nunito',weight:'700',size:11},bodyFont:{family:'Nunito',weight:'800',size:13}}},
+      scales:{
+        x:{ticks:{color:'#8aaa90',font:{size:9,family:'Nunito',weight:'700'},maxTicksLimit:6},grid:{color:'rgba(74,124,89,0.06)'},border:{display:false}},
+        y:{ticks:{color:'#8aaa90',font:{size:9,family:'Nunito',weight:'700'}},grid:{color:'rgba(74,124,89,0.06)'},border:{display:false}}
+      }
+    }
+  });
 }
+
 function renderAll(){renderHero();renderLog();renderChart();renderWeather();}
+
 function generateDemo(){
   const f=[],now=new Date();
   for(let h=167;h>=0;h--){
@@ -393,12 +547,14 @@ function generateDemo(){
     const curve=Math.sin((hr-6)*Math.PI/12)*5;
     const temp=parseFloat((24+curve+(Math.random()-.5)*1.2).toFixed(1));
     const airHum=parseFloat((55+Math.sin(h*.05)*8+(Math.random()-.5)*4).toFixed(1));
+    const nivelAgua=parseFloat(Math.max(0,80-(h*.3)+(Math.random()-.5)*5).toFixed(1));
     const p=PROFILES[activeProfile],s=sp(p,temp);
     const rh=parseFloat(Math.min(98,Math.max(5,s-p.delta+(Math.random()*p.delta*2.8))).toFixed(1));
-    f.push({rh,temp,humedadAire:airHum,ts:ts.toISOString()});
+    f.push({rh,temp,humedadAire:airHum,nivelAgua,ts:ts.toISOString()});
   }
   return f;
 }
+
 async function fetchData(manual=false){
   if(manual){const b=document.getElementById('refreshBtn');b.classList.add('spin');setTimeout(()=>b.classList.remove('spin'),900);}
   try{
@@ -407,13 +563,14 @@ async function fetchData(manual=false){
     let demo=false;
     if(!json.feeds||!json.feeds.length){demo=true;}
     else{
-      const parsed=json.feeds.map(f=>({rh:parseFloat(f.field1),nivelAgua:parseFloat(f.field2)||null,humedadAire:parseFloat(f.field3)||null,temp:parseFloat(f.field4),spEsp:null,ts:f.created_at})).filter(f=>!isNaN(f.rh)&&!isNaN(f.temp));
-      if(!parsed.length){demo=true;}
-      else{
-        allFeeds=parsed;
-        const lp=parsed[parsed.length-1].perfilEsp;
-        if(lp&&lp>=1&&lp<=5){activeProfile=lp-1;buildProfiles();}
-      }
+      const parsed=json.feeds.map(f=>({
+        rh:parseFloat(f.field1),
+        nivelAgua:parseFloat(f.field2)||null,
+        humedadAire:parseFloat(f.field3)||null,
+        temp:parseFloat(f.field4),
+        spEsp:null,ts:f.created_at
+      })).filter(f=>!isNaN(f.rh)&&!isNaN(f.temp));
+      if(!parsed.length){demo=true;}else{allFeeds=parsed;}
     }
     if(demo){allFeeds=generateDemo();document.getElementById('demoBanner').style.display='block';document.getElementById('lastUpdate').textContent='Modo demo';}
     else{document.getElementById('demoBanner').style.display='none';const n=new Date();document.getElementById('lastUpdate').textContent='Actualizado '+n.getHours().toString().padStart(2,'0')+':'+n.getMinutes().toString().padStart(2,'0');}
