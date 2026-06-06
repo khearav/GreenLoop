@@ -40,8 +40,6 @@ body{font-family:'Nunito',sans-serif;color:var(--text);padding-bottom:60px;min-h
 .hero-unit{font-size:24px;font-weight:700;color:rgba(255,255,255,0.7);margin-bottom:12px;}
 .hero-status{font-size:12px;font-weight:600;color:rgba(255,255,255,0.65);margin-bottom:20px;}
 .hero-plant{position:absolute;right:16px;bottom:0;display:flex;align-items:flex-end;}
-
-/* floating chips on hero */
 .hero-chips{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
 .hchip{background:rgba(255,255,255,0.18);border:0.5px solid rgba(255,255,255,0.25);border-radius:99px;padding:5px 12px;font-size:11px;font-weight:700;color:#fff;display:flex;align-items:center;gap:5px;}
 .hchip-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.7);}
@@ -96,10 +94,42 @@ body{font-family:'Nunito',sans-serif;color:var(--text);padding-bottom:60px;min-h
 .data-row:last-child{border-bottom:none;}
 .dr-k{font-size:11px;font-weight:600;color:var(--text3);}
 .dr-v{font-size:13px;font-weight:800;color:var(--text);}
-.pid-box{display:flex;align-items:center;gap:10px;background:var(--surface3);border:0.5px solid var(--border2);border-radius:var(--rsm);padding:10px 12px;margin-top:12px;}
-.pid-ico{width:30px;height:30px;background:var(--sagebg);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.pid-txt{font-size:10px;font-weight:600;color:var(--text3);line-height:1.5;}
-.pid-txt b{display:block;font-size:11px;font-weight:800;color:var(--text2);margin-bottom:1px;}
+
+/* ── PID TERMS GRID ── */
+.pid-terms{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px;}
+.pid-term{border-radius:var(--rsm);padding:10px;text-align:center;}
+.pid-term.p{background:var(--bluelight);border:0.5px solid rgba(58,143,192,0.25);}
+.pid-term.i{background:#e8f8ec;border:0.5px solid rgba(50,160,80,0.25);}
+.pid-term.d{background:var(--amberlight);border:0.5px solid rgba(232,150,42,0.25);}
+.pid-term-lbl{font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;}
+.pid-term.p .pid-term-lbl{color:#3a8fc0;}
+.pid-term.i .pid-term-lbl{color:#2a8040;}
+.pid-term.d .pid-term-lbl{color:var(--amber);}
+.pid-term-k{font-size:20px;font-weight:900;letter-spacing:-1px;}
+.pid-term.p .pid-term-k{color:#1a4a6a;}
+.pid-term.i .pid-term-k{color:#1a3a20;}
+.pid-term.d .pid-term-k{color:#3a2000;}
+.pid-term-sub{font-size:9px;font-weight:700;margin-top:2px;}
+.pid-term.p .pid-term-sub{color:#3a8fc0;}
+.pid-term.i .pid-term-sub{color:#2a8040;}
+.pid-term.d .pid-term-sub{color:var(--amber);}
+.pid-term-divider{height:0.5px;margin:6px 0;}
+.pid-term.p .pid-term-divider{background:rgba(58,143,192,0.2);}
+.pid-term.i .pid-term-divider{background:rgba(50,160,80,0.2);}
+.pid-term.d .pid-term-divider{background:rgba(232,150,42,0.2);}
+.pid-term-live-lbl{font-size:10px;font-weight:600;}
+.pid-term.p .pid-term-live-lbl{color:#3a8fc0;}
+.pid-term.i .pid-term-live-lbl{color:#2a8040;}
+.pid-term.d .pid-term-live-lbl{color:var(--amber);}
+.pid-term-live-val{font-size:14px;font-weight:800;}
+.pid-term.p .pid-term-live-val{color:#1a4a6a;}
+.pid-term.i .pid-term-live-val{color:#1a3a20;}
+.pid-term.d .pid-term-live-val{color:#3a2000;}
+
+/* ── PID FORMULA BOX ── */
+.pid-formula{margin-top:12px;background:var(--surface3);border:0.5px solid var(--border2);border-radius:var(--rsm);padding:10px 12px;}
+.pid-formula-lbl{font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--text3);margin-bottom:6px;}
+.pid-formula-txt{font-size:11px;font-weight:700;color:var(--text2);line-height:1.8;}
 
 /* ── PUMP ── */
 .pump-row{display:flex;align-items:center;gap:14px;}
@@ -151,7 +181,7 @@ canvas{width:100%!important;height:145px!important;}
 .lpump{font-size:10px;font-weight:800;text-align:right;color:var(--text3);}
 .lpump.on{color:var(--sage);}
 
-/* ── REFRESH / DEMO ── */
+/* ── REFRESH ── */
 .refresh-row{display:flex;justify-content:flex-end;align-items:center;gap:10px;margin:10px 16px 0;}
 .refresh-btn{background:var(--surface);border:0.5px solid var(--border2);border-radius:99px;padding:7px 18px;font-family:'Nunito',sans-serif;font-size:11px;font-weight:700;color:var(--text2);cursor:pointer;}
 .refresh-btn.spin .ri{display:inline-block;animation:spin .7s linear infinite;}
@@ -182,24 +212,20 @@ canvas{width:100%!important;height:145px!important;}
     <ellipse cx="180" cy="100" rx="60" ry="30" fill="white" transform="rotate(10,180,100)"/>
     <ellipse cx="140" cy="150" rx="70" ry="35" fill="white" transform="rotate(-30,140,150)"/>
   </svg>
-
   <div class="hero-top">
     <div class="hero-label">Humedad del suelo</div>
     <div class="hero-season" id="heroSeason">-- Temporada</div>
   </div>
-
   <div class="hero-num-row">
     <div class="hero-big" id="bigHum">--</div>
     <div class="hero-unit">%</div>
   </div>
   <div class="hero-status" id="statusText">Conectando sensores…</div>
-
   <div class="hero-chips">
     <div class="hchip"><div class="hchip-dot ok" id="chipDot"></div><span id="chipLabel">Operando</span></div>
     <div class="hchip"><span id="chipTemp">--°C</span></div>
     <div class="hchip"><span id="chipSP">SP: --%</span></div>
   </div>
-
   <div class="hero-plant">
     <svg width="130" height="140" viewBox="0 0 130 140" xmlns="http://www.w3.org/2000/svg">
       <ellipse cx="65" cy="128" rx="40" ry="8" fill="rgba(0,0,0,0.15)"/>
@@ -218,7 +244,7 @@ canvas{width:100%!important;height:145px!important;}
   </div>
 </div>
 
-<!-- STATS ROW: temp + humedad aire -->
+<!-- STATS ROW -->
 <div class="stats-row">
   <div class="stat-card">
     <div class="stat-ico amber">
@@ -247,11 +273,7 @@ canvas{width:100%!important;height:145px!important;}
   <div class="tank-body">
     <div class="tank-visual">
       <svg width="80" height="130" viewBox="0 0 80 130" id="tankSvg">
-        <defs>
-          <clipPath id="tankClip">
-            <rect x="8" y="18" width="64" height="96" rx="8"/>
-          </clipPath>
-        </defs>
+        <defs><clipPath id="tankClip"><rect x="8" y="18" width="64" height="96" rx="8"/></clipPath></defs>
         <rect x="8" y="18" width="64" height="96" rx="10" fill="#e8f4fc" stroke="#90c8e8" stroke-width="1.5"/>
         <rect id="tankWater" x="8" y="80" width="64" height="34" rx="0" fill="#3a8fc0" opacity="0.6" clip-path="url(#tankClip)"/>
         <rect x="8" y="18" width="64" height="96" rx="10" fill="none" stroke="#3a8fc0" stroke-width="1.5"/>
@@ -283,32 +305,76 @@ canvas{width:100%!important;height:145px!important;}
   <button class="refresh-btn" id="refreshBtn" onclick="manualRefresh()"><span class="ri">↻</span> Actualizar</button>
 </div>
 
-<!-- SISTEMA DE CONTROL -->
+<!-- ══════════════════════════════════════════════════════ -->
+<!--  CONTROL PID                                          -->
+<!-- ══════════════════════════════════════════════════════ -->
 <div class="section">
-  <div class="sec-hd"><span class="sec-lbl">Sistema de control</span></div>
+  <div class="sec-hd"><span class="sec-lbl">Control PID</span></div>
   <div class="card">
+
+    <!-- Header -->
     <div class="ctrl-head">
-      <span class="ctrl-title" id="profileNameCtrl">Plantas de interior</span>
-      <span class="mode-badge">On / Off</span>
+      <span class="ctrl-title">Controlador PID</span>
+      <span class="mode-badge" id="pidModeBadge">ZN Método 1</span>
     </div>
+
+    <!-- Barra humedad con banda setpoint -->
     <div class="moist-track">
       <div class="moist-fill" id="moistFill" style="width:0%"></div>
       <div class="moist-band" id="moistBand"></div>
     </div>
     <div class="moist-lbls"><span>0%</span><span>Zona óptima</span><span>100%</span></div>
-    <div class="data-row"><span class="dr-k">Humedad suelo actual</span><span class="dr-v" id="spSoil">--%</span></div>
-    <div class="data-row"><span class="dr-k">Setpoint RHset(T)</span><span class="dr-v" id="spActive">--%</span></div>
-    <div class="data-row"><span class="dr-k">Histéresis ±Δ</span><span class="dr-v" id="spBand">-- / --%</span></div>
-    <div class="data-row"><span class="dr-k">Error e(t)</span><span class="dr-v" id="spError">--%</span></div>
-    <div class="pid-box">
-      <div class="pid-ico">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+
+    <!-- Datos en tiempo real -->
+    <div class="data-row"><span class="dr-k">Humedad suelo RH(k)</span><span class="dr-v" id="spSoil">--%</span></div>
+    <div class="data-row"><span class="dr-k">Setpoint SP(T)</span><span class="dr-v" id="spActive">--%</span></div>
+    <div class="data-row"><span class="dr-k">Error e(k) = SP − RH</span><span class="dr-v" id="spError">--%</span></div>
+    <div class="data-row"><span class="dr-k">Señal de control u(k)</span><span class="dr-v" id="pidUK">--%</span></div>
+    <div class="data-row"><span class="dr-k">PWM bomba (0–255)</span><span class="dr-v" id="pidPWM">---</span></div>
+    <div class="data-row"><span class="dr-k">Modo sistema</span><span class="dr-v" id="pidModo" style="color:var(--sage);">NORMAL</span></div>
+
+    <!-- Tres bloques de ganancias -->
+    <div class="pid-terms">
+
+      <div class="pid-term p">
+        <div class="pid-term-lbl">Proporcional</div>
+        <div class="pid-term-k">6.27</div>
+        <div class="pid-term-sub">K<sub>p</sub></div>
+        <div class="pid-term-divider"></div>
+        <div class="pid-term-live-lbl">P(k)</div>
+        <div class="pid-term-live-val" id="pidP">--</div>
       </div>
-      <div class="pid-txt">
-        <b>Control PID — en desarrollo</b>
-        u(t) = Kp·e + Ki·∫e dt + Kd·de/dt
+
+      <div class="pid-term i">
+        <div class="pid-term-lbl">Integral</div>
+        <div class="pid-term-k">1.57</div>
+        <div class="pid-term-sub">K<sub>i</sub></div>
+        <div class="pid-term-divider"></div>
+        <div class="pid-term-live-lbl">I(k)</div>
+        <div class="pid-term-live-val" id="pidI">--</div>
+      </div>
+
+      <div class="pid-term d">
+        <div class="pid-term-lbl">Derivativo</div>
+        <div class="pid-term-k">6.27</div>
+        <div class="pid-term-sub">K<sub>d</sub></div>
+        <div class="pid-term-divider"></div>
+        <div class="pid-term-live-lbl">D(k)</div>
+        <div class="pid-term-live-val" id="pidD">≈0</div>
+      </div>
+
+    </div>
+
+    <!-- Caja de fórmulas -->
+    <div class="pid-formula">
+      <div class="pid-formula-lbl">Planta identificada · ZN Método 1</div>
+      <div class="pid-formula-txt">
+        G(s) = 1.97 · e<sup>−2s</sup> / (20.6s + 1)<br>
+        G<sub>c</sub>(s) = 6.27 · (1 + 1/4s + s)<br>
+        SP(T) = 55 + 0.7 · (T − 20) %
       </div>
     </div>
+
   </div>
 </div>
 
@@ -322,7 +388,7 @@ canvas{width:100%!important;height:145px!important;}
       </div>
       <div class="pump-info">
         <div class="pump-name">Bomba de agua</div>
-        <div class="pump-sub" id="pumpSub">5V · relay ESP32 · GPIO</div>
+        <div class="pump-sub" id="pumpSub">5V · 2N2222A · GPIO 32</div>
       </div>
       <div class="pump-badge" id="pumpBadge">Apagada</div>
     </div>
@@ -387,26 +453,27 @@ canvas{width:100%!important;height:145px!important;}
 <script>
 const CHANNEL_ID='3386144',READ_KEY='U6W0UUNVMUDJ7PD2',TREF=20,TANK_CAP=5;
 const PROFILES=[
-  {name:'Suculentas',ico:'🌵',RHbase:20,delta:5,k:0.3},
-  {name:'Interior',ico:'🪴',RHbase:55,delta:8,k:0.7},
-  {name:'Tropical',ico:'🌿',RHbase:65,delta:7,k:1.0},
-  {name:'Aromáticas',ico:'🌱',RHbase:60,delta:6,k:0.8},
-  {name:'Hortalizas',ico:'🍅',RHbase:70,delta:8,k:1.4},
+  {name:'Suculentas', ico:'🌵',RHbase:20,delta:5,k:0.3},
+  {name:'Interior',   ico:'🪴',RHbase:55,delta:8,k:0.7},
+  {name:'Tropical',   ico:'🌿',RHbase:65,delta:7,k:1.0},
+  {name:'Aromáticas', ico:'🌱',RHbase:60,delta:6,k:0.8},
+  {name:'Hortalizas', ico:'🍅',RHbase:70,delta:8,k:1.4},
 ];
 const SEASONS={
   spring:{name:'Primavera',emoji:'🌸',icon:'🌸',cond:'Radiación moderada',note:'Crecimiento activo. Mayor evapotranspiración — el setpoint sube para compensar.'},
-  summer:{name:'Verano',emoji:'☀️',icon:'☀️',cond:'Alta radiación',note:'Calor elevado en Tijuana. Alta evapotranspiración — la bomba trabajará con mayor frecuencia. Revisa el tanque.'},
-  autumn:{name:'Otoño',emoji:'🍂',icon:'🍂',cond:'Templado',note:'El setpoint baja con la temperatura. Buena época para reducir el riego gradualmente.'},
-  winter:{name:'Invierno',emoji:'❄️',icon:'🌫',cond:'Latencia vegetal',note:'Periodo de latencia. Setpoint reducido para evitar sobrehumedad y hongos de raíz.'},
+  summer:{name:'Verano',   emoji:'☀️',icon:'☀️',cond:'Alta radiación',    note:'Calor elevado en Tijuana. Alta evapotranspiración — la bomba trabajará con mayor frecuencia. Revisa el tanque.'},
+  autumn:{name:'Otoño',    emoji:'🍂',icon:'🍂',cond:'Templado',          note:'El setpoint baja con la temperatura. Buena época para reducir el riego gradualmente.'},
+  winter:{name:'Invierno', emoji:'❄️',icon:'🌫',cond:'Latencia vegetal',  note:'Periodo de latencia. Setpoint reducido para evitar sobrehumedad y hongos de raíz.'},
 };
 function getSeason(){const m=new Date().getMonth();if(m>=2&&m<=4)return'spring';if(m>=5&&m<=7)return'summer';if(m>=8&&m<=10)return'autumn';return'winter';}
+
 let allFeeds=[],activeProfile=1,chartMode='hum',chartInst=null;
 function sp(p,T){return p.RHbase+p.k*(T-TREF);}
 function pumpOn(rh,s,d,f){if(f&&f.pumpEsp!==undefined)return f.pumpEsp===1;return rh<s-d;}
 function statusMsg(rh,s,d){
   if(rh<s-d*2)return'Suelo muy seco — regando activamente';
-  if(rh<s-d)return'Por debajo del setpoint — bomba activa';
-  if(rh<=s+d)return'Humedad en rango óptimo';
+  if(rh<s-d)  return'Por debajo del setpoint — bomba activa';
+  if(rh<=s+d) return'Humedad en rango óptimo';
   if(rh<=s+d*2)return'Ligeramente alto — en espera';
   return'Suelo saturado — deja reposar';
 }
@@ -419,9 +486,7 @@ function animatePlant(rh,s,d){
 }
 function animateTank(pct){
   const el=document.getElementById('tankWater');if(!el)return;
-  const maxH=96,minY=18;
-  const h=Math.round(maxH*pct/100);
-  const y=minY+maxH-h;
+  const maxH=96,minY=18,h=Math.round(maxH*pct/100),y=minY+maxH-h;
   el.setAttribute('y',y);el.setAttribute('height',h);
   const badge=document.getElementById('tankPctBadge');
   if(badge)badge.textContent=Math.round(pct)+'%';
@@ -454,51 +519,87 @@ function buildProfiles(){
     el.onclick=()=>{activeProfile=i;buildProfiles();renderAll();};
     g.appendChild(el);
   });
-  document.getElementById('profileNameCtrl').textContent=PROFILES[activeProfile].name;
+  document.getElementById('profileNameCtrl') &&
+    (document.getElementById('profileNameCtrl').textContent=PROFILES[activeProfile].name);
 }
 
 function renderHero(){
   if(!allFeeds.length)return;
   const last=allFeeds[allFeeds.length-1],p=PROFILES[activeProfile];
-  const s=last.spEsp||sp(p,last.temp),pump=pumpOn(last.rh,s,p.delta,last),err=s-last.rh;
+  const spVal=last.spEsp||sp(p,last.temp);
+  const pump=pumpOn(last.rh,spVal,p.delta,last);
+  const err=spVal-last.rh;
 
+  // Hero
   document.getElementById('bigHum').textContent=last.rh.toFixed(1);
-  document.getElementById('statusText').textContent=statusMsg(last.rh,s,p.delta);
+  document.getElementById('statusText').textContent=statusMsg(last.rh,spVal,p.delta);
   document.getElementById('chipTemp').textContent=last.temp.toFixed(1)+'°C';
-  document.getElementById('chipSP').textContent='SP: '+s.toFixed(1)+'%';
+  document.getElementById('chipSP').textContent='SP: '+spVal.toFixed(1)+'%';
   document.getElementById('statTemp').textContent=last.temp.toFixed(1)+'°';
   const air=last.humedadAire;
   document.getElementById('statAir').textContent=(air?air.toFixed(0):'--')+'%';
 
   const dot=document.getElementById('chipDot'),lbl=document.getElementById('chipLabel');
-  if(last.rh<s-p.delta*2){dot.className='hchip-dot err';lbl.textContent='Riego urgente';}
-  else if(last.rh<s-p.delta){dot.className='hchip-dot warn';lbl.textContent='Regando';}
-  else if(last.rh<=s+p.delta){dot.className='hchip-dot ok';lbl.textContent='Óptimo';}
+  if(last.rh<spVal-p.delta*2){dot.className='hchip-dot err';lbl.textContent='Riego urgente';}
+  else if(last.rh<spVal-p.delta){dot.className='hchip-dot warn';lbl.textContent='Regando';}
+  else if(last.rh<=spVal+p.delta){dot.className='hchip-dot ok';lbl.textContent='Óptimo';}
   else{dot.className='hchip-dot warn';lbl.textContent='Saturado';}
 
+  // Bomba
   const pb=document.getElementById('pumpBadge'),pi=document.getElementById('pumpIcon');
-  if(pump){pb.className='pump-badge on';pb.textContent='Encendida';pi.className='pump-ico on';document.getElementById('pumpSub').textContent='Regando — relay activo';}
-  else{pb.className='pump-badge';pb.textContent='Apagada';pi.className='pump-ico';document.getElementById('pumpSub').textContent='5V · relay ESP32 · GPIO';}
+  if(pump){pb.className='pump-badge on';pb.textContent='Encendida';pi.className='pump-ico on';document.getElementById('pumpSub').textContent='Regando — PWM activo';}
+  else{pb.className='pump-badge';pb.textContent='Apagada';pi.className='pump-ico';document.getElementById('pumpSub').textContent='5V · 2N2222A · GPIO 32';}
 
-  animatePlant(last.rh,s,p.delta);
+  animatePlant(last.rh,spVal,p.delta);
 
-  document.getElementById('spSoil').textContent=last.rh.toFixed(1)+'%';
-  document.getElementById('spActive').textContent=s.toFixed(1)+'%';
-  document.getElementById('spBand').textContent=(s-p.delta).toFixed(1)+'% / '+(s+p.delta).toFixed(1)+'%';
-  document.getElementById('spError').textContent=(err>=0?'+':'')+err.toFixed(1)+'%';
+  // Barra humedad
   document.getElementById('moistFill').style.width=last.rh+'%';
-  const mb=document.getElementById('moistBand');mb.style.left=(s-p.delta)+'%';mb.style.width=(p.delta*2)+'%';
+  const mb=document.getElementById('moistBand');
+  mb.style.left=(spVal-p.delta)+'%';mb.style.width=(p.delta*2)+'%';
 
-  // Tank — use nivelAgua if available, else estimate
+  // ── Tarjeta PID ─────────────────────────────────────────
+  document.getElementById('spSoil').textContent  = last.rh.toFixed(1)+'%';
+  document.getElementById('spActive').textContent= spVal.toFixed(1)+'%';
+  document.getElementById('spError').textContent = (err>=0?'+':'')+err.toFixed(2)+'%';
+
+  const uk  = (last.uk  != null && !isNaN(last.uk))  ? last.uk  : null;
+  const pwm = (last.pwm != null && !isNaN(last.pwm)) ? last.pwm : null;
+  const modo= (last.modo!= null && !isNaN(last.modo))? Math.round(last.modo) : 0;
+
+  document.getElementById('pidUK').textContent  = uk  != null ? uk.toFixed(1)+'%' : '--';
+  document.getElementById('pidPWM').textContent = pwm != null ? Math.round(pwm)+'' : '--';
+
+  // Términos P, I, D estimados
+  const Kp=6.27, Ki=1.57;
+  const pTerm = Kp * err;
+  document.getElementById('pidP').textContent = pTerm.toFixed(2);
+  if(uk != null){
+    const iEst = uk - pTerm;
+    document.getElementById('pidI').textContent = iEst.toFixed(2);
+  } else {
+    document.getElementById('pidI').textContent = '--';
+  }
+  document.getElementById('pidD').textContent = '≈ 0';
+
+  // Modo sistema
+  const modoTexts  = ['NORMAL','TANQUE VACÍO','TIMEOUT'];
+  const modoColors = ['var(--sage)','#e8962a','#c03030'];
+  const modoIdx    = Math.min(2, Math.max(0, modo));
+  document.getElementById('pidModo').textContent = modoTexts[modoIdx];
+  document.getElementById('pidModo').style.color = modoColors[modoIdx];
+  document.getElementById('pidModeBadge').textContent =
+    modoIdx===0 ? 'ZN Método 1' : modoIdx===1 ? '⚠ Tanque' : '✕ Timeout';
+
+  // Tank
   const nv=last.nivelAgua;
   let tankPct=nv!=null&&!isNaN(nv)?Math.min(100,Math.max(0,nv)):(45+Math.random()*30);
   animateTank(tankPct);
   const vol=(TANK_CAP*tankPct/100).toFixed(2);
   const qEst=Math.max(18,28+last.temp*.8+Math.abs(err)*.4);
   const auton=Math.round(TANK_CAP*tankPct/100*1000/qEst);
-  document.getElementById('tankVol').textContent=vol+' L';
-  document.getElementById('tankAuton').textContent=auton+' h';
-  document.getElementById('tankQ').textContent=Math.round(qEst)+' mL/h';
+  document.getElementById('tankVol').textContent  = vol+' L';
+  document.getElementById('tankAuton').textContent= auton+' h';
+  document.getElementById('tankQ').textContent    = Math.round(qEst)+' mL/h';
 }
 
 function renderLog(){
@@ -513,7 +614,12 @@ function renderLog(){
   });
 }
 
-function switchChart(mode,btn){chartMode=mode;document.querySelectorAll('.ctab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');renderChart();}
+function switchChart(mode,btn){
+  chartMode=mode;
+  document.querySelectorAll('.ctab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  renderChart();
+}
 
 function renderChart(){
   const slice=[...allFeeds].slice(-24);
@@ -550,7 +656,9 @@ function generateDemo(){
     const nivelAgua=parseFloat(Math.max(0,80-(h*.3)+(Math.random()-.5)*5).toFixed(1));
     const p=PROFILES[activeProfile],s=sp(p,temp);
     const rh=parseFloat(Math.min(98,Math.max(5,s-p.delta+(Math.random()*p.delta*2.8))).toFixed(1));
-    f.push({rh,temp,humedadAire:airHum,nivelAgua,ts:ts.toISOString()});
+    const uk=parseFloat(Math.max(0,Math.min(100,6.27*(s-rh))).toFixed(1));
+    const pwm=uk>0?Math.round(70+1.2*uk):0;
+    f.push({rh,temp,humedadAire:airHum,nivelAgua,uk,pwm,modo:0,spEsp:s,ts:ts.toISOString()});
   }
   return f;
 }
@@ -564,22 +672,41 @@ async function fetchData(manual=false){
     if(!json.feeds||!json.feeds.length){demo=true;}
     else{
       const parsed=json.feeds.map(f=>({
-        rh:parseFloat(f.field1),
-        nivelAgua:parseFloat(f.field2)||null,
-        humedadAire:parseFloat(f.field3)||null,
-        temp:parseFloat(f.field4),
-        spEsp:null,ts:f.created_at
+        rh:          parseFloat(f.field1),
+        temp:        parseFloat(f.field2),
+        spEsp:       parseFloat(f.field3)||null,
+        uk:          parseFloat(f.field4)||null,
+        pwm:         parseFloat(f.field5)||null,
+        nivelAgua:   parseFloat(f.field6)||null,
+        modo:        parseFloat(f.field7)||null,
+        humedadAire: null,
+        ts:          f.created_at
       })).filter(f=>!isNaN(f.rh)&&!isNaN(f.temp));
       if(!parsed.length){demo=true;}else{allFeeds=parsed;}
     }
-    if(demo){allFeeds=generateDemo();document.getElementById('demoBanner').style.display='block';document.getElementById('lastUpdate').textContent='Modo demo';}
-    else{document.getElementById('demoBanner').style.display='none';const n=new Date();document.getElementById('lastUpdate').textContent='Actualizado '+n.getHours().toString().padStart(2,'0')+':'+n.getMinutes().toString().padStart(2,'0');}
+    if(demo){
+      allFeeds=generateDemo();
+      document.getElementById('demoBanner').style.display='block';
+      document.getElementById('lastUpdate').textContent='Modo demo';
+    } else {
+      document.getElementById('demoBanner').style.display='none';
+      const n=new Date();
+      document.getElementById('lastUpdate').textContent='Actualizado '+n.getHours().toString().padStart(2,'0')+':'+n.getMinutes().toString().padStart(2,'0');
+    }
     renderAll();
-  }catch(e){allFeeds=generateDemo();document.getElementById('demoBanner').style.display='block';renderAll();}
+  }catch(e){
+    allFeeds=generateDemo();
+    document.getElementById('demoBanner').style.display='block';
+    renderAll();
+  }
 }
+
 function manualRefresh(){fetchData(true);}
-updateClock();setInterval(updateClock,30000);
-buildProfiles();fetchData();setInterval(fetchData,60000);
+updateClock();
+setInterval(updateClock,30000);
+buildProfiles();
+fetchData();
+setInterval(fetchData,60000);
 </script>
 </body>
 </html>
